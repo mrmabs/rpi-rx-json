@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>RX Tuner</title>
+</head>
+<style>
+body {
+	font-family: sans-serif;
+	margin: 100px;
+}
+span {
+	font-family: monospace;
+	font-size: 12pt;
+}
+</style>
+<body>
+<form id="setfreq">
+	<div>Frequency:<input type="text" name="freq" id="freq" />kHz</div>
+	<div><button type="submit">submit</button></div>
+</form>
+<div>Output: <span id="output">0.0</span></div>
+<script>
+document.getElementById("setfreq").addEventListener("submit", function(event){
+	event.preventDefault();
+	event.stopPropagation();
+
+	var freq = document.getElementById("freq").value;
+	var JSONdata = '{ "freq": "' + freq + '" }';
+	document.getElementById("output").innerHTML = JSONdata;
+	//window.location = "set-rx.py?x=" + JSONdata;
+	//document.getElementById("output").load("set-rx.py?x=" + JSONdata);
+
+	return false;
+});
+</script>
+</body>
+</html>
