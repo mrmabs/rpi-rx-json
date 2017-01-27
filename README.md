@@ -3,6 +3,8 @@ Raspberry Pi Direct Conversion RX JSON Remote
 
 A simple python web JSON receiver to change the frequency of a direct conversion receiver hooked up the the GPIO pin. Currently the JSON receiver will return either the frequency in hertz (Hz) or "No freq"; this will change to a more appropriate output at version 1.0.
 
+This program was designed around the [Language Spy Pi-HF Direct Conversion Receiver](https://shop.languagespy.com/collections/amateur-radio-kits/products/pi-hf-direct-conversion-radio-receiver-for-the-raspberry-pi)
+
 The steps I did to get this working:
 
 1. Installed Raspbian Jesse Lite (the version I used: 2017-01-11)
