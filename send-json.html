@@ -14,10 +14,10 @@ span {
 </style>
 <body>
 <form id="setfreq">
-	<div>Frequency:<input type="text" name="freq" id="freq" />kHz</div>
+	<div>Frequency:<input type="text" name="freq" id="freq" />Hz</div>
 	<div><button type="submit">submit</button></div>
 </form>
-<div>Output: <span id="output">0.0</span></div>
+<div>Response: <span id="output">0.0</span></div>
 <script>
 document.getElementById("setfreq").addEventListener("submit", function(event){
 	event.preventDefault();
@@ -25,12 +25,27 @@ document.getElementById("setfreq").addEventListener("submit", function(event){
 
 	var freq = document.getElementById("freq").value;
 	var JSONdata = '{ "freq": "' + freq + '" }';
-	document.getElementById("output").innerHTML = JSONdata;
+	//document.getElementById("output").innerHTML = JSONdata;
 	//window.location = "set-rx.py?x=" + JSONdata;
 	//document.getElementById("output").load("set-rx.py?x=" + JSONdata);
 
+	var txtFile = new XMLHttpRequest();
+	txtFile.open("GET", "set-rx.py?x=" + JSONdata, true);
+	txtFile.onreadystatechange = function() {
+		if (txtFile.readyState === 4) { // Makes sure the document is ready to parse.
+			if (txtFile.status === 200) { // Makes sure the file exists.
+				allText = txtFile.responseText;
+				//lines = txtFile.responseText.split("\n"); // Will separate each line into an array
+				var customTextElement2 = document.getElementById('output');
+				customTextElement2.innerHTML = txtFile.responseText;
+			}
+		}
+	}
+	txtFile.send(null);
+
 	return false;
 });
+
 </script>
 </body>
 </html>
